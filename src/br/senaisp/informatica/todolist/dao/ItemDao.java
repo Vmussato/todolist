@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.senaisp.informatica.todolist.modelo.ItemLista;
+import br.senaisp.informatica.todolist.modelo.Lista;
 
 @Repository
 public class ItemDao {
@@ -18,5 +19,11 @@ public class ItemDao {
 		ItemLista item = manager.find(ItemLista.class, idItem);
 		item.setFeito(valor);
 		manager.merge(item);
+	}
+	
+	@Transactional
+	public void inserir(Long idLista, ItemLista item){
+		item.setLista(manager.find(Lista.class, idLista));
+		manager.persist(item);
 	}
 }
