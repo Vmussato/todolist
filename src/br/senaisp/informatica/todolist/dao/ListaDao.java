@@ -6,8 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.senaisp.informatica.todolist.modelo.Lista;
 
@@ -27,5 +31,14 @@ public class ListaDao {
 				("select l from Lista l", Lista.class);
 		return query.getResultList();
 	}
+	
+	@Transactional
+	public void excluir(Long idLista){
+		Lista lista = manager.find(Lista.class, idLista);
+		manager.remove(lista);
+	}
+	
+	
+	
 	
 }
