@@ -25,7 +25,7 @@ public class ListaRestController {
 	@Autowired
 	private ListaDao listaDao;
 	
-	@Transactional
+	
 	@RequestMapping(value="/lista", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Lista> inserir(@RequestBody String strLista){
 		 try {
@@ -50,4 +50,10 @@ public class ListaRestController {
 					ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(value="/lista", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Lista> listar(){
+		return listaDao.listar();
+	}
 }
+

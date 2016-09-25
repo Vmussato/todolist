@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 //vmussato
 @Entity
 public class Lista {
@@ -44,6 +46,7 @@ public class Lista {
 		this.itens = itens;
 	}
 
+	@JsonProperty(value="feito")
 	public boolean isRealizada() {
 		for (ItemLista item : itens) {
 			if (!item.isFeito()) {
